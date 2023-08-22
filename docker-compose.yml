@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+    # mysql
+    db:
+        image: mysql:latest
+        restart: unless-stopped
+        platform: linux/amd64
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: prometeus_accounting_api
+            MYSQL_USER: laravel
+            MYSQL_PASSWORD: laravel
+        volumes:
+            # use folder in host
+            - ./db-data:/var/lib/mysql
+        ports:
+            - "3306:3306"
+        networks:
+            - laravel
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        restart: unless-stopped
+        platform: linux/amd64
+        environment:
+            PMA_HOST: db
+            PMA_PORT: 3306
+            MYSQL_ROOT_PASSWORD: root
+        ports:
+            - "8080:80"
+        networks:
+            - laravel
+
+# Networks
+networks:
+    laravel:
+        driver: bridge
