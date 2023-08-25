@@ -14,10 +14,7 @@ class BadRequestException extends Exception
     public function render($request)
     {
         return response()->json([
-            'error' => [
-                'message' => $this->getMessage(),
-                'code' => $this->getCode(),
-            ]
-        ], $this->getCode());
+            'message' => $this->getMessage(),
+        ], 400);
     }
 }

@@ -4,8 +4,6 @@ FROM php:8.2-fpm
 RUN apt-get update && \
     apt-get install -y \
     libzip-dev \
-    zip \
-    unzip \
     git \
     curl \
     libicu-dev \
@@ -17,7 +15,7 @@ RUN apt-get update && \
 
 # Configure and install PHP extensions
 RUN docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg \
-    && docker-php-ext-install pdo_mysql mysqli zip exif pcntl intl bcmath gd \
+    && docker-php-ext-install pdo_mysql mysqli exif pcntl intl bcmath gd \
     && pecl install imagick \
     && docker-php-ext-enable imagick
 
@@ -37,19 +35,13 @@ COPY .env.example /var/www/html/.env
 
 WORKDIR /var/www/html
 
-# Install PHP dependencies and generate Laravel application key
-RUN composer install && \
-    php artisan key:generate
-
-    # RUN composer install --optimize-autoloader --no-dev --prefer-dist && \
-    # php artisan key:generate
+RUN composer install --optimize-autoloader --no-dev --prefer-dist && \
+    php artisan key:generate && \
+    php artisan jwt:secret
 
 # Set necessary permissions on storage/ and bootstrap/ directories
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache && \
     chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
-
-# give permission to public/uploads folder
-RUN chmod -R 777 /var/www/html/public/uploads
 
 # Install nginx
 RUN apt-get update && \

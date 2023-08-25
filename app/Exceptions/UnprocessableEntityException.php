@@ -13,11 +13,11 @@ class UnprocessableEntityException extends Exception
 
     public function render($request)
     {
-        return response()->json([
-            'error' => [
-                'message' => $this->getMessage(),
-                'code' => $this->getCode(),
-            ]
-        ], $this->getCode());
+        // array of errors
+        $errors = [
+            'message' => $this->getMessage(),
+        ];
+
+        return response()->json($errors, 422);
     }
 }

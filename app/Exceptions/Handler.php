@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -42,35 +43,52 @@ class Handler extends ExceptionHandler
     {
         if ($e instanceof ModelNotFoundException) {
             return response()->json([
-                'message' => 'Resource not found'
+                'message' => 'Resource not found',
             ], 404);
         } elseif ($e instanceof BadRequestException) {
             return response()->json([
-                'message' => $e->getMessage()
+                'message' => $e->getMessage() ?? 'Bad Request',
+                'status' => 'error',
+                'code' => 400,
+                'data' => json_decode($e->getMessage()),
             ], 400);
         } elseif ($e instanceof UnauthorizedException) {
             return response()->json([
-                'message' => $e->getMessage()
+                'message' => $e->getMessage() ?? 'Unauthorized',
+                'status' => 'error',
+                'code' => 401,
+                'data' => json_decode($e->getMessage()),
             ], 401);
         } elseif ($e instanceof NotFoundException) {
             return response()->json([
-                'message' => $e->getMessage()
+                'message' => $e->getMessage() ?? 'Not Found',
+                'status' => 'error',
+                'code' => 404,
+                'data' => json_decode($e->getMessage()),
             ], 404);
         } elseif ($e instanceof UnprocessableEntityException) {
             return response()->json([
-                'message' => $e->getMessage()
+                'message' => 'Unprocessable Entity',
+                'status' => 'error',
+                'code' => 422,
+                'data' => json_decode($e->getMessage()),
             ], 422);
         } elseif ($e instanceof InternalServerErrorException) {
             return response()->json([
-                'message' => $e->getMessage()
+                'message' => $e->getMessage(),
             ], 500);
+        } elseif ($e instanceof RouteNotFoundException) {
+            return response()->json([
+                'message' => 'Unauthorized route, please login first',
+                'status' => 'error',
+                'code' => 401,
+                'data' => json_decode($e->getMessage()),
+            ], 401);
         }
-
-//        return parent::render($request, $e);
 
         // return json
         return response()->json([
-            'message' => $e->getMessage()
+            'message' => $e->getMessage(),
         ], 500);
     }
 }

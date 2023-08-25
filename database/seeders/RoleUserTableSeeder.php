@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Role;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class RoleUserTableSeeder extends Seeder
@@ -19,19 +18,22 @@ class RoleUserTableSeeder extends Seeder
         $superAdminRole = Role::where('name', 'super_admin')->first();
 
         $admin = User::create([
-            'name' => 'Admin User',
+            'first_name' => 'Admin',
+            'last_name' => 'User',
             'email' => 'admin@gmail.com',
             'password' => bcrypt('123456'),
         ]);
 
         $user = User::create([
-            'name' => 'Regular User',
+            'first_name' => 'User',
+            'last_name' => 'User',
             'email' => 'user@gmail.com',
             'password' => bcrypt('123456'),
         ]);
 
         $superAdmin = User::create([
-            'name' => 'Super Admin User',
+            'first_name' => 'Super',
+            'last_name' => 'Admin',
             'email' => 'superadmin@gmail.com',
             'password' => bcrypt('123456'),
         ]);

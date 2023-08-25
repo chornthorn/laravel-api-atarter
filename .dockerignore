@@ -1,0 +1,22 @@
+# Exclude development and configuration files
+.env
+#.env.*
+.dockerignore
+.git
+.gitignore
+node_modules
+vendor
+
+# Exclude build artifacts
+public/css
+public/js
+public/mix-manifest.json
+public/storage
+
+# Exclude logs and cache directories
+storage/logs
+storage/framework/cache
+storage/framework/sessions
+storage/framework/views
+
+db-data
