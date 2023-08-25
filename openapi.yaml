@@ -30,7 +30,80 @@ paths:
               password: '123456'
       responses:
         '200':
-          description: ''
+          description: Login
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Fri, 25 Aug 2023 13:42:24 GMT
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.1
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '59'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                    example: 200
+                  data:
+                    type: object
+                    properties:
+                      access_token:
+                        type: string
+                        example: >-
+                          eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL3YxL2F1dGgvbG9naW4iLCJpYXQiOjE2OTI5NzA5NDQsImV4cCI6MTY5Mjk3NDU0NCwibmJmIjoxNjkyOTcwOTQ0LCJqdGkiOiJzd1NtVU85MjA0QW5yZHhLIiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.hCaYZ5SOduBcWaNJBcnPCtKHJzpZYSLlfKeFVxDq_RE
+                      refresh_token:
+                        type: string
+                        example: >-
+                          eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL3YxL2F1dGgvbG9naW4iLCJpYXQiOjE2OTI5NzA5NDQsImV4cCI6MTY5Mjk3NDU0NCwibmJmIjoxNjkyOTcwOTQ0LCJqdGkiOiJJMTVPVGd0Y3lYNGpSb0phIiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.2ENhczsJpZxwhU7s46PhlhwkPut_yMZyc8K9fxgQhjw
+                      token_type:
+                        type: string
+                        example: bearer
+                  message:
+                    type: string
+                    example: Request processed successfully
+                  status:
+                    type: string
+                    example: success
+              examples:
+                Login:
+                  value:
+                    code: 200
+                    data:
+                      access_token: >-
+                        eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL3YxL2F1dGgvbG9naW4iLCJpYXQiOjE2OTI5NzA5NDQsImV4cCI6MTY5Mjk3NDU0NCwibmJmIjoxNjkyOTcwOTQ0LCJqdGkiOiJzd1NtVU85MjA0QW5yZHhLIiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.hCaYZ5SOduBcWaNJBcnPCtKHJzpZYSLlfKeFVxDq_RE
+                      refresh_token: >-
+                        eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL3YxL2F1dGgvbG9naW4iLCJpYXQiOjE2OTI5NzA5NDQsImV4cCI6MTY5Mjk3NDU0NCwibmJmIjoxNjkyOTcwOTQ0LCJqdGkiOiJJMTVPVGd0Y3lYNGpSb0phIiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.2ENhczsJpZxwhU7s46PhlhwkPut_yMZyc8K9fxgQhjw
+                      token_type: bearer
+                    message: Request processed successfully
+                    status: success
   /auth/refresh:
     post:
       tags:
