@@ -1,0 +1,1868 @@
+openapi: 3.0.3
+info:
+  title: Prometeus Accounting API
+  version: 1.0.0
+  contact: {}
+servers:
+  - url: http://localhost:8000/api
+paths:
+  /auth/login:
+    post:
+      tags:
+        - Auth
+      summary: Login
+      description: Login
+      operationId: login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: admin@gmail.com
+                password:
+                  type: string
+                  example: '123456'
+            example:
+              email: admin@gmail.com
+              password: '123456'
+      responses:
+        '200':
+          description: ''
+  /auth/refresh:
+    post:
+      tags:
+        - Auth
+      summary: Refresh token
+      description: Refresh token
+      operationId: refreshToken
+      responses:
+        '200':
+          description: ''
+  /auth/me:
+    post:
+      tags:
+        - Auth
+      summary: Me
+      description: Me
+      operationId: me
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: admin@gmail.com
+                password:
+                  type: string
+                  example: '123456'
+            example:
+              email: admin@gmail.com
+              password: '123456'
+      responses:
+        '200':
+          description: ''
+  /auth/logout:
+    post:
+      tags:
+        - Auth
+      summary: Logout
+      description: Logout
+      operationId: logout
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: admin@gmail.com
+                password:
+                  type: string
+                  example: '123456'
+            example:
+              email: admin@gmail.com
+              password: '123456'
+      responses:
+        '200':
+          description: ''
+  /users:
+    get:
+      tags:
+        - User
+      summary: Get all
+      description: Get all
+      operationId: getAll
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: string
+            example: '1'
+        - name: per_page
+          in: query
+          schema:
+            type: string
+            example: '2'
+        - name: code
+          in: query
+          schema:
+            type: string
+            example: PO_002
+        - name: first_name
+          in: query
+          schema:
+            type: string
+            example: John
+        - name: last_name
+          in: query
+          schema:
+            type: string
+            example: Doe
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: admin@gmail.com
+                password:
+                  type: string
+                  example: '123456'
+            example:
+              email: admin@gmail.com
+              password: '123456'
+      responses:
+        '200':
+          description: ''
+    post:
+      tags:
+        - User
+      summary: Create new
+      description: Create new
+      operationId: createNew
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: john.doed@example.com
+                first_name:
+                  type: string
+                  example: John
+                last_name:
+                  type: string
+                  example: Doe
+                password:
+                  type: string
+                  example: secret
+                roles:
+                  type: array
+                  items:
+                    type: string
+                    example: admin
+                  example:
+                    - admin
+                    - user
+            example:
+              email: john.doed@example.com
+              first_name: John
+              last_name: Doe
+              password: secret
+              roles:
+                - admin
+                - user
+      responses:
+        '200':
+          description: ''
+  /users/12:
+    get:
+      tags:
+        - User
+      summary: Get one by Id
+      description: Get one by Id
+      operationId: getOneById
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: admin@gmail.com
+                password:
+                  type: string
+                  example: '123456'
+            example:
+              email: admin@gmail.com
+              password: '123456'
+      responses:
+        '200':
+          description: ''
+    put:
+      tags:
+        - User
+      summary: Update
+      description: Update
+      operationId: update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: john.doed@example.com
+                first_name:
+                  type: string
+                  example: John
+                last_name:
+                  type: string
+                  example: Doe
+                password:
+                  type: string
+                  example: secret
+                roles:
+                  type: array
+                  items:
+                    type: string
+                    example: admin
+                  example:
+                    - admin
+                    - user
+            example:
+              email: john.doed@example.com
+              first_name: John
+              last_name: Doe
+              password: secret
+              roles:
+                - admin
+                - user
+      responses:
+        '200':
+          description: ''
+    delete:
+      tags:
+        - User
+      summary: Delete by Id
+      description: Delete by Id
+      operationId: deleteById
+      responses:
+        '200':
+          description: ''
+  /departments:
+    get:
+      tags:
+        - Departments
+      summary: Get all
+      description: Get all
+      operationId: getAll1
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: string
+            example: '1'
+        - name: per_page
+          in: query
+          schema:
+            type: string
+            example: '2'
+        - name: code
+          in: query
+          schema:
+            type: string
+            example: DP_001
+        - name: name
+          in: query
+          schema:
+            type: string
+            example: Marketing
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: admin@gmail.com
+                password:
+                  type: string
+                  example: '123456'
+            example:
+              email: admin@gmail.com
+              password: '123456'
+      responses:
+        '200':
+          description: ''
+    post:
+      tags:
+        - Departments
+      summary: Create new
+      description: Create new
+      operationId: createNew1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+                  example: testing
+                name:
+                  type: string
+                  example: admissssn
+            example:
+              description: testing
+              name: admissssn
+      responses:
+        '200':
+          description: ''
+  /departments/11:
+    get:
+      tags:
+        - Departments
+      summary: Get one by Id
+      description: Get one by Id
+      operationId: getOneById1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: admin@gmail.com
+                password:
+                  type: string
+                  example: '123456'
+            example:
+              email: admin@gmail.com
+              password: '123456'
+      responses:
+        '200':
+          description: ''
+  /departments/10:
+    delete:
+      tags:
+        - Departments
+      summary: Delete by Id
+      description: Delete by Id
+      operationId: deleteById1
+      responses:
+        '200':
+          description: ''
+  /departments/12:
+    put:
+      tags:
+        - Departments
+      summary: Update by Id
+      description: Update by Id
+      operationId: updateById
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+                  example: Update description
+                name:
+                  type: string
+                  example: Sales
+            example:
+              description: Update description
+              name: Sales
+      responses:
+        '200':
+          description: ''
+  /departments/map:
+    post:
+      tags:
+        - Departments
+      summary: Map position
+      description: Map position
+      operationId: mapPosition
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                department_id:
+                  type: number
+                  example: 1
+                position_id:
+                  type: number
+                  example: 3
+            example:
+              department_id: 1
+              position_id: 3
+      responses:
+        '200':
+          description: ''
+  /departments/unmap:
+    post:
+      tags:
+        - Departments
+      summary: Unmap position
+      description: Unmap position
+      operationId: unmapPosition
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                department_id:
+                  type: number
+                  example: 1
+                position_id:
+                  type: number
+                  example: 3
+            example:
+              department_id: 1
+              position_id: 3
+      responses:
+        '200':
+          description: ''
+  /departments/1/positions:
+    get:
+      tags:
+        - Departments
+      summary: Get position by department
+      description: Get position by department
+      operationId: getPositionByDepartment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                department_id:
+                  type: number
+                  example: 1
+                position_id:
+                  type: number
+                  example: 3
+            example:
+              department_id: 1
+              position_id: 3
+      responses:
+        '200':
+          description: ''
+  /positions:
+    get:
+      tags:
+        - Positions
+      summary: Get all
+      description: Get all
+      operationId: getAll2
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: string
+            example: '1'
+        - name: per_page
+          in: query
+          schema:
+            type: string
+            example: '2'
+        - name: code
+          in: query
+          schema:
+            type: string
+            example: PO_002
+        - name: name
+          in: query
+          schema:
+            type: string
+            example: IT
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: admin@gmail.com
+                password:
+                  type: string
+                  example: '123456'
+            example:
+              email: admin@gmail.com
+              password: '123456'
+      responses:
+        '200':
+          description: ''
+    post:
+      tags:
+        - Positions
+      summary: Create new
+      description: Create new
+      operationId: createNew2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+                  example: testing
+                name:
+                  type: string
+                  example: admin
+            example:
+              description: testing
+              name: admin
+      responses:
+        '200':
+          description: ''
+  /positions/1:
+    get:
+      tags:
+        - Positions
+      summary: Get one by Id
+      description: Get one by Id
+      operationId: getOneById2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: admin@gmail.com
+                password:
+                  type: string
+                  example: '123456'
+            example:
+              email: admin@gmail.com
+              password: '123456'
+      responses:
+        '200':
+          description: ''
+    delete:
+      tags:
+        - Positions
+      summary: Delete by Id
+      description: Delete by Id
+      operationId: deleteById2
+      responses:
+        '200':
+          description: ''
+  /positions/5:
+    put:
+      tags:
+        - Positions
+      summary: Update by Id
+      description: Update by Id
+      operationId: updateById1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+                  example: Update description
+            example:
+              description: Update description
+      responses:
+        '200':
+          description: ''
+  /employees:
+    get:
+      tags:
+        - Employee
+      summary: Get all
+      description: Get all
+      operationId: getAll3
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: string
+            example: '1'
+        - name: per_page
+          in: query
+          schema:
+            type: string
+            example: '2'
+        - name: code
+          in: query
+          schema:
+            type: string
+            example: PO_002
+        - name: first_name
+          in: query
+          schema:
+            type: string
+            example: John
+        - name: last_name
+          in: query
+          schema:
+            type: string
+            example: Doe
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: admin@gmail.com
+                password:
+                  type: string
+                  example: '123456'
+            example:
+              email: admin@gmail.com
+              password: '123456'
+      responses:
+        '200':
+          description: ''
+    post:
+      tags:
+        - Employee
+      summary: Create new
+      description: Create new
+      operationId: createNew3
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                address:
+                  type: string
+                  example: Phnom Penh
+                code:
+                  description: leave it blank the system will auto general for us
+                  type: string
+                  example: ''
+                department_id:
+                  type: string
+                  example: '1'
+                dob:
+                  description: date of birth (yyyy-mm-dd)
+                  type: string
+                  example: '1990-01-01'
+                doj:
+                  description: date of join  (yyyy-mm-dd)
+                  type: string
+                  example: '2021-01-01'
+                dol:
+                  description: date of leave  (yyyy-mm-dd)
+                  type: string
+                  example: '2026-01-01'
+                email:
+                  type: string
+                  example: love@gmail.com
+                first_name:
+                  type: string
+                  example: Thorn
+                gender:
+                  description: Male,Femal
+                  type: string
+                  example: Male
+                last_name:
+                  type: string
+                  example: Thorn
+                number_of_children:
+                  description: integer
+                  type: string
+                  example: '0'
+                phone_number:
+                  type: string
+                  example: '3653464564'
+                position_id:
+                  type: string
+                  example: '1'
+                profile_file:
+                  type: string
+                  format: binary
+                status:
+                  type: string
+                  example: Inactive
+      responses:
+        '200':
+          description: ''
+  /employees/12:
+    get:
+      tags:
+        - Employee
+      summary: Get one by Id
+      description: Get one by Id
+      operationId: getOneById3
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: admin@gmail.com
+                password:
+                  type: string
+                  example: '123456'
+            example:
+              email: admin@gmail.com
+              password: '123456'
+      responses:
+        '200':
+          description: ''
+  /employees/1:
+    post:
+      tags:
+        - Employee
+      summary: Update
+      description: Update
+      operationId: update1
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                address:
+                  type: string
+                  example: Phnom Penh
+                code:
+                  description: leave it blank the system will auto general for us
+                  type: string
+                  example: ''
+                department_id:
+                  type: string
+                  example: '1'
+                dob:
+                  description: date of birth (yyyy-mm-dd)
+                  type: string
+                  example: '1990-01-01'
+                doj:
+                  description: date of join  (yyyy-mm-dd)
+                  type: string
+                  example: '2021-01-01'
+                dol:
+                  description: date of leave  (yyyy-mm-dd)
+                  type: string
+                  example: '2026-01-01'
+                email:
+                  type: string
+                  example: love@gmail.com
+                first_name:
+                  type: string
+                  example: Thorn
+                gender:
+                  description: Male,Femal
+                  type: string
+                  example: Male
+                last_name:
+                  type: string
+                  example: Thorn update
+                number_of_children:
+                  description: integer
+                  type: string
+                  example: '0'
+                phone_number:
+                  type: string
+                  example: '3653464564'
+                position_id:
+                  type: string
+                  example: '1'
+                profile_file:
+                  type: string
+                  format: binary
+                status:
+                  type: string
+                  example: Inactive
+      responses:
+        '200':
+          description: ''
+    delete:
+      tags:
+        - Employee
+      summary: Delete by Id
+      description: Delete by Id
+      operationId: deleteById3
+      responses:
+        '200':
+          description: ''
+  /customers:
+    get:
+      tags:
+        - Customer
+      summary: Get all
+      description: Get all
+      operationId: getAll4
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: string
+            example: '1'
+        - name: per_page
+          in: query
+          schema:
+            type: string
+            example: '2'
+        - name: first_name
+          in: query
+          schema:
+            type: string
+            example: John
+        - name: last_name
+          in: query
+          schema:
+            type: string
+            example: Doe
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: admin@gmail.com
+                password:
+                  type: string
+                  example: '123456'
+            example:
+              email: admin@gmail.com
+              password: '123456'
+      responses:
+        '200':
+          description: ''
+    post:
+      tags:
+        - Customer
+      summary: Create new
+      description: Create new
+      operationId: createNew4
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                address:
+                  type: string
+                  example: Phnom Penh
+                bank_accounts:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      account_name:
+                        type: string
+                        example: John Doe 2ss
+                      account_number:
+                        type: string
+                        example: '1234567890'
+                      account_type:
+                        type: string
+                        example: Savings
+                      bank_name:
+                        type: string
+                        example: Bank A
+                  example:
+                    - account_name: John Doe 2ss
+                      account_number: '1234567890'
+                      account_type: Savings
+                      bank_name: Bank A
+                    - account_name: Jane Doe ss
+                      account_number: '0987654321'
+                      account_type: Checking
+                      bank_name: Bank B
+                email:
+                  type: string
+                  example: khmers@gmail.com
+                first_name:
+                  type: string
+                  example: Thorn
+                last_name:
+                  type: string
+                  example: Thorn
+                phone_number:
+                  type: string
+                  example: 13653464564s
+                status:
+                  type: string
+                  example: Inactive
+                vat_number:
+                  type: string
+                  example: '523444434'
+            example:
+              address: Phnom Penh
+              bank_accounts:
+                - account_name: John Doe 2ss
+                  account_number: '1234567890'
+                  account_type: Savings
+                  bank_name: Bank A
+                - account_name: Jane Doe ss
+                  account_number: '0987654321'
+                  account_type: Checking
+                  bank_name: Bank B
+              email: khmers@gmail.com
+              first_name: Thorn
+              last_name: Thorn
+              phone_number: 13653464564s
+              status: Inactive
+              vat_number: '523444434'
+      responses:
+        '200':
+          description: ''
+  /customers/4:
+    get:
+      tags:
+        - Customer
+      summary: Get one by Id
+      description: Get one by Id
+      operationId: getOneById4
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: admin@gmail.com
+                password:
+                  type: string
+                  example: '123456'
+            example:
+              email: admin@gmail.com
+              password: '123456'
+      responses:
+        '200':
+          description: ''
+    put:
+      tags:
+        - Customer
+      summary: Update by Id
+      description: Update by Id
+      operationId: updateById2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                address:
+                  type: string
+                  example: Phnom Penh
+                bank_accounts:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      account_name:
+                        type: string
+                        example: John Doe 2
+                      account_number:
+                        type: string
+                        example: '1234567890'
+                      account_type:
+                        type: string
+                        example: Savings
+                      bank_name:
+                        type: string
+                        example: Bank A
+                  example:
+                    - account_name: John Doe 2
+                      account_number: '1234567890'
+                      account_type: Savings
+                      bank_name: Bank A
+                email:
+                  type: string
+                  example: khmer@gmail.com
+                first_name:
+                  type: string
+                  example: Thorn
+                last_name:
+                  type: string
+                  example: Thorn
+                phone_number:
+                  type: string
+                  example: '13653464564'
+                status:
+                  type: string
+                  example: Inactive
+                vat_number:
+                  type: string
+                  example: '523444434'
+            example:
+              address: Phnom Penh
+              bank_accounts:
+                - account_name: John Doe 2
+                  account_number: '1234567890'
+                  account_type: Savings
+                  bank_name: Bank A
+              email: khmer@gmail.com
+              first_name: Thorn
+              last_name: Thorn
+              phone_number: '13653464564'
+              status: Inactive
+              vat_number: '523444434'
+      responses:
+        '200':
+          description: ''
+  /customers/6:
+    delete:
+      tags:
+        - Customer
+      summary: Delete by Id
+      description: Delete by Id
+      operationId: deleteById4
+      responses:
+        '200':
+          description: ''
+  /bank-accounts:
+    get:
+      tags:
+        - Bank Account
+      summary: Get all
+      description: Get all
+      operationId: getAll5
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: string
+            example: '1'
+        - name: per_page
+          in: query
+          schema:
+            type: string
+            example: '2'
+        - name: bank_name
+          in: query
+          schema:
+            type: string
+            example: PO_002
+        - name: account_name
+          in: query
+          schema:
+            type: string
+            example: IT
+        - name: account_number
+          in: query
+          schema:
+            type: string
+            example: '123456789'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: admin@gmail.com
+                password:
+                  type: string
+                  example: '123456'
+            example:
+              email: admin@gmail.com
+              password: '123456'
+      responses:
+        '200':
+          description: ''
+    post:
+      tags:
+        - Bank Account
+      summary: Create new
+      description: Create new
+      operationId: createNew5
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                account_name:
+                  type: string
+                  example: Thorn Chorn
+                account_number:
+                  type: string
+                  example: '7897866785'
+                account_type:
+                  type: string
+                  example: Savings
+                bank_name:
+                  type: string
+                  example: Wing Bank
+                status:
+                  type: string
+                  example: Inactive
+            example:
+              account_name: Thorn Chorn
+              account_number: '7897866785'
+              account_type: Savings
+              bank_name: Wing Bank
+              status: Inactive
+      responses:
+        '200':
+          description: ''
+  /bank-accounts/1:
+    get:
+      tags:
+        - Bank Account
+      summary: Get one by Id
+      description: Get one by Id
+      operationId: getOneById5
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: admin@gmail.com
+                password:
+                  type: string
+                  example: '123456'
+            example:
+              email: admin@gmail.com
+              password: '123456'
+      responses:
+        '200':
+          description: ''
+  /bank-accounts/11:
+    put:
+      tags:
+        - Bank Account
+      summary: Update by Id
+      description: Update by Id
+      operationId: updateById3
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                account_name:
+                  type: string
+                  example: Thorn Chorn
+                account_number:
+                  type: string
+                  example: '7897866785'
+                account_type:
+                  type: string
+                  example: Savings
+                bank_name:
+                  type: string
+                  example: Wing Bank Update
+                status:
+                  type: string
+                  example: Active
+            example:
+              account_name: Thorn Chorn
+              account_number: '7897866785'
+              account_type: Savings
+              bank_name: Wing Bank Update
+              status: Active
+      responses:
+        '200':
+          description: ''
+    delete:
+      tags:
+        - Bank Account
+      summary: Delete by Id
+      description: Delete by Id
+      operationId: deleteById5
+      responses:
+        '200':
+          description: ''
+  /applicants:
+    get:
+      tags:
+        - Applicant
+      summary: Get all
+      description: Get all
+      operationId: getAll6
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: string
+            example: '1'
+        - name: per_page
+          in: query
+          schema:
+            type: string
+            example: '2'
+        - name: first_name
+          in: query
+          schema:
+            type: string
+            example: PO_002
+        - name: last_name
+          in: query
+          schema:
+            type: string
+            example: IT
+        - name: email
+          in: query
+          schema:
+            type: string
+            example: r5gCt@example.com
+        - name: phone_number
+          in: query
+          schema:
+            type: string
+            example: '123456789'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: admin@gmail.com
+                password:
+                  type: string
+                  example: '123456'
+            example:
+              email: admin@gmail.com
+              password: '123456'
+      responses:
+        '200':
+          description: ''
+    post:
+      tags:
+        - Applicant
+      summary: Create new
+      description: Create new
+      operationId: createNew6
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: thorn@prometeus.com
+                first_name:
+                  type: string
+                  example: thorn
+                last_name:
+                  type: string
+                  example: chorn
+                notes:
+                  type: string
+                  example: ''
+                phone_number:
+                  type: string
+                  example: '8978798768'
+                resume_file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: ''
+  /applicants/1:
+    get:
+      tags:
+        - Applicant
+      summary: Get one by Id
+      description: Get one by Id
+      operationId: getOneById6
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: admin@gmail.com
+                password:
+                  type: string
+                  example: '123456'
+            example:
+              email: admin@gmail.com
+              password: '123456'
+      responses:
+        '200':
+          description: ''
+  /applicants/2:
+    delete:
+      tags:
+        - Applicant
+      summary: Delete by Id
+      description: Delete by Id
+      operationId: deleteById6
+      responses:
+        '200':
+          description: ''
+  /applicants/7:
+    post:
+      tags:
+        - Applicant
+      summary: Update by Id
+      description: Update by Id
+      operationId: updateById4
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: thorn@prometeus.com
+                first_name:
+                  type: string
+                  example: thorn
+                last_name:
+                  type: string
+                  example: chorn
+                notes:
+                  type: string
+                  example: testing
+                phone_number:
+                  type: string
+                  example: '8978798768'
+                resume_file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: ''
+  /vendors:
+    get:
+      tags:
+        - Vendor
+      summary: Get all
+      description: Get all
+      operationId: getAll7
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: string
+            example: '1'
+        - name: per_page
+          in: query
+          schema:
+            type: string
+            example: '2'
+        - name: first_name
+          in: query
+          schema:
+            type: string
+            example: thorn
+        - name: last_name
+          in: query
+          schema:
+            type: string
+            example: IT
+        - name: email
+          in: query
+          schema:
+            type: string
+            example: r5gCt@example.com
+        - name: phone_number
+          in: query
+          schema:
+            type: string
+            example: '123456789'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: admin@gmail.com
+                password:
+                  type: string
+                  example: '123456'
+            example:
+              email: admin@gmail.com
+              password: '123456'
+      responses:
+        '200':
+          description: ''
+    post:
+      tags:
+        - Vendor
+      summary: Create new
+      description: Create new
+      operationId: createNew7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                address:
+                  type: string
+                  example: 123 Main St, New York
+                bank_accounts:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      account_name:
+                        type: string
+                        example: John DoeS
+                      account_number:
+                        type: string
+                        example: '123456789012'
+                      account_type:
+                        type: string
+                        example: Personal
+                      bank_name:
+                        type: string
+                        example: Bank A
+                  example:
+                    - account_name: John DoeS
+                      account_number: '123456789012'
+                      account_type: Personal
+                      bank_name: Bank A
+                    - account_name: John Kim
+                      account_number: 0987654321w1
+                      account_type: Business
+                      bank_name: Bank B
+                email:
+                  type: string
+                  example: ffdsf@example.com
+                first_name:
+                  type: string
+                  example: John
+                last_name:
+                  type: string
+                  example: Doe
+                notes:
+                  type: string
+                  example: Lorem ipsum dolor sit amet
+                phone_number:
+                  type: string
+                  example: +1 (123) 456-7890
+                status:
+                  type: string
+                  example: Active
+                vat_number:
+                  type: string
+                  example: '123456789'
+                website:
+                  type: string
+                  example: http://example.com
+            example:
+              address: 123 Main St, New York
+              bank_accounts:
+                - account_name: John DoeS
+                  account_number: '123456789012'
+                  account_type: Personal
+                  bank_name: Bank A
+                - account_name: John Kim
+                  account_number: 0987654321w1
+                  account_type: Business
+                  bank_name: Bank B
+              email: ffdsf@example.com
+              first_name: John
+              last_name: Doe
+              notes: Lorem ipsum dolor sit amet
+              phone_number: +1 (123) 456-7890
+              status: Active
+              vat_number: '123456789'
+              website: http://example.com
+      responses:
+        '200':
+          description: ''
+  /vendors/1:
+    get:
+      tags:
+        - Vendor
+      summary: Get one by Id
+      description: Get one by Id
+      operationId: getOneById7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: admin@gmail.com
+                password:
+                  type: string
+                  example: '123456'
+            example:
+              email: admin@gmail.com
+              password: '123456'
+      responses:
+        '200':
+          description: ''
+  /vendors/2:
+    delete:
+      tags:
+        - Vendor
+      summary: Delete by Id
+      description: Delete by Id
+      operationId: deleteById7
+      responses:
+        '200':
+          description: ''
+  /vendors/27:
+    put:
+      tags:
+        - Vendor
+      summary: Update by Id
+      description: Update by Id
+      operationId: updateById5
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                address:
+                  type: string
+                  example: 123 Main St, New York
+                bank_accounts:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      account_name:
+                        type: string
+                        example: John DoeS
+                      account_number:
+                        type: string
+                        example: '123456789012'
+                      account_type:
+                        type: string
+                        example: Personal
+                      bank_name:
+                        type: string
+                        example: Bank A
+                  example:
+                    - account_name: John DoeS
+                      account_number: '123456789012'
+                      account_type: Personal
+                      bank_name: Bank A
+                    - account_name: John DoeS
+                      account_number: '1234567890121'
+                      account_type: Personal
+                      bank_name: Bank B Update
+                email:
+                  type: string
+                  example: ffdsf@example.com
+                first_name:
+                  type: string
+                  example: John
+                last_name:
+                  type: string
+                  example: Doe
+                notes:
+                  type: string
+                  example: Lorem ipsum dolor sit amet
+                phone_number:
+                  type: string
+                  example: +1 (123) 456-7890
+                status:
+                  type: string
+                  example: Active
+                vat_number:
+                  type: string
+                  example: '123456789'
+                website:
+                  type: string
+                  example: http://example.com
+            example:
+              address: 123 Main St, New York
+              bank_accounts:
+                - account_name: John DoeS
+                  account_number: '123456789012'
+                  account_type: Personal
+                  bank_name: Bank A
+                - account_name: John DoeS
+                  account_number: '1234567890121'
+                  account_type: Personal
+                  bank_name: Bank B Update
+              email: ffdsf@example.com
+              first_name: John
+              last_name: Doe
+              notes: Lorem ipsum dolor sit amet
+              phone_number: +1 (123) 456-7890
+              status: Active
+              vat_number: '123456789'
+              website: http://example.com
+      responses:
+        '200':
+          description: ''
+  /invoices:
+    get:
+      tags:
+        - Invoice
+      summary: Get all
+      description: Get all
+      operationId: getAll8
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: string
+            example: '1'
+        - name: per_page
+          in: query
+          schema:
+            type: string
+            example: '2'
+        - name: first_name
+          in: query
+          schema:
+            type: string
+            example: thorn
+        - name: last_name
+          in: query
+          schema:
+            type: string
+            example: IT
+        - name: email
+          in: query
+          schema:
+            type: string
+            example: r5gCt@example.com
+        - name: phone_number
+          in: query
+          schema:
+            type: string
+            example: '123456789'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: admin@gmail.com
+                password:
+                  type: string
+                  example: '123456'
+            example:
+              email: admin@gmail.com
+              password: '123456'
+      responses:
+        '200':
+          description: ''
+    post:
+      tags:
+        - Invoice
+      summary: Create new
+      description: Create new
+      operationId: createNew8
+      requestBody:
+        content:
+          text/plain:
+            example: |
+              {
+                  "customer_id": 1,
+                  "invoice_number": "INV-001",
+                  "issue_date": "2022-01-01",
+                  "due_date": "2022-01-15",
+                  "description": "Invoice for services rendered",
+                  "exchange_rate": 1.2,
+                  "sub_total": 1000,
+                  "tax": 200,
+                  // "total": 1200,
+                  "paid": 500,
+                  "balance": 700,
+                  "status": "Active",
+                  "invoice_items": [
+                      {
+                          "item_name": "Item 1",
+                          "quantity": 2,
+                          "unit_price": 50,
+                          "total": 100
+                      },
+                      {
+                          "item_name": "Item 2",
+                          "quantity": 1,
+                          "unit_price": 75,
+                          "total": 75
+                      }
+                  ]
+              }
+      responses:
+        '200':
+          description: ''
+  /invoices/6:
+    get:
+      tags:
+        - Invoice
+      summary: Get one by Id
+      description: Get one by Id
+      operationId: getOneById8
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: admin@gmail.com
+                password:
+                  type: string
+                  example: '123456'
+            example:
+              email: admin@gmail.com
+              password: '123456'
+      responses:
+        '200':
+          description: ''
+  /invoices/5:
+    delete:
+      tags:
+        - Invoice
+      summary: Delete by Id
+      description: Delete by Id
+      operationId: deleteById8
+      responses:
+        '200':
+          description: ''
+  /invoices/4:
+    put:
+      tags:
+        - Invoice
+      summary: Update by Id
+      description: Update by Id
+      operationId: updateById6
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                balance:
+                  type: number
+                  example: 700
+                customer_id:
+                  type: number
+                  example: 1
+                description:
+                  type: string
+                  example: Invoice for services rendered
+                due_date:
+                  type: string
+                  example: '2022-01-15'
+                exchange_rate:
+                  type: number
+                  example: 1.2
+                invoice_items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      item_name:
+                        type: string
+                        example: Item 1
+                      quantity:
+                        type: number
+                        example: 2
+                      total:
+                        type: number
+                        example: 100
+                      unit_price:
+                        type: number
+                        example: 50
+                  example:
+                    - item_name: Item 1
+                      quantity: 2
+                      total: 100
+                      unit_price: 50
+                    - item_name: Item 2
+                      quantity: 1
+                      total: 75
+                      unit_price: 75
+                invoice_number:
+                  type: string
+                  example: INV-001
+                issue_date:
+                  type: string
+                  example: '2022-01-01'
+                paid:
+                  type: number
+                  example: 500
+                status:
+                  type: string
+                  example: Active
+                sub_total:
+                  type: number
+                  example: 1000
+                tax:
+                  type: number
+                  example: 200
+                total:
+                  type: number
+                  example: 1200
+            example:
+              balance: 700
+              customer_id: 1
+              description: Invoice for services rendered
+              due_date: '2022-01-15'
+              exchange_rate: 1.2
+              invoice_items:
+                - item_name: Item 1
+                  quantity: 2
+                  total: 100
+                  unit_price: 50
+                - item_name: Item 2
+                  quantity: 1
+                  total: 75
+                  unit_price: 75
+              invoice_number: INV-001
+              issue_date: '2022-01-01'
+              paid: 500
+              status: Active
+              sub_total: 1000
+              tax: 200
+              total: 1200
+      responses:
+        '200':
+          description: ''
+tags:
+  - name: Auth
+  - name: User
+  - name: Departments
+  - name: Positions
+  - name: Employee
+  - name: Customer
+  - name: Bank Account
+  - name: Applicant
+  - name: Vendor
+  - name: Invoice
