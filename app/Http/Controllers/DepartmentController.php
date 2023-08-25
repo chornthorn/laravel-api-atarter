@@ -71,6 +71,13 @@ class DepartmentController extends Controller
             throw new UnprocessableEntityException($validator->errors());
         }
 
+        // check if the department already exists
+        $departmentExsited = Department::where('name', $payload['name'])->first();
+
+        if ($departmentExsited) {
+            throw new BadRequestException('Department already exists');
+        }
+
         $department = Department::create($payload);
 
         if (!$department) {

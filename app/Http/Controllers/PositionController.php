@@ -69,6 +69,12 @@ class PositionController extends Controller
             throw new UnprocessableEntityException($validator->errors());
         }
 
+        $positionExists = Position::where('name', $payload['name'])->first();
+
+        if ($positionExists) {
+            throw new BadRequestException('Position already exists');
+        }
+
         $position = Position::create($payload);
 
         if (!$position) {
