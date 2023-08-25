@@ -4,7 +4,7 @@ info:
   version: 1.0.0
   contact: {}
 servers:
-  - url: http://localhost:8000/api/v1
+  - url: http://localhost:8000/api
 paths:
   /auth/login:
     post:
@@ -21,12 +21,12 @@ paths:
               properties:
                 email:
                   type: string
-                  example: admin@gmail.com
+                  example: admin@gmail.cosm
                 password:
                   type: string
                   example: '123456'
             example:
-              email: admin@gmail.com
+              email: admin@gmail.cosm
               password: '123456'
       responses:
         '200':
@@ -104,6 +104,65 @@ paths:
                       token_type: bearer
                     message: Request processed successfully
                     status: success
+        '400':
+          description: Invalid credentials
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Fri, 25 Aug 2023 13:48:57 GMT
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.1
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '59'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                    example: 400
+                  data:
+                    nullable: true
+                    example: null
+                  message:
+                    type: string
+                    example: Invalid credentials, please try again.
+                  status:
+                    type: string
+                    example: error
+              examples:
+                Invalid credentials:
+                  value:
+                    code: 400
+                    data: null
+                    message: Invalid credentials, please try again.
+                    status: error
   /auth/refresh:
     post:
       tags:
@@ -113,7 +172,131 @@ paths:
       operationId: refreshToken
       responses:
         '200':
-          description: ''
+          description: Refresh token
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Fri, 25 Aug 2023 13:47:03 GMT
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.1
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '59'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                    example: 200
+                  data:
+                    type: object
+                    properties:
+                      access_token:
+                        type: string
+                        example: >-
+                          eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL3YxL2F1dGgvcmVmcmVzaCIsImlhdCI6MTY5Mjk3MDk2MiwiZXhwIjoxNjkyOTc0ODIzLCJuYmYiOjE2OTI5NzEyMjMsImp0aSI6IjdFcHU5YmJlU29NRFJMREoiLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.XYMvLfZjHTxgsfKkku0g6P0HlYlb7ycAN2xmKxCoU0k
+                      refresh_token:
+                        type: string
+                        example: >-
+                          eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL3YxL2F1dGgvcmVmcmVzaCIsImlhdCI6MTY5Mjk3MDk2MiwiZXhwIjoxNjkyOTc0ODIzLCJuYmYiOjE2OTI5NzEyMjMsImp0aSI6IkcxdUdPTktEY3pHUm1HbUYiLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.LjrUZdy0vOIDxjIEwM0KD1L6p1GdJv70vmVMVgkMepM
+                      token_type:
+                        type: string
+                        example: bearer
+                  message:
+                    type: string
+                    example: Request processed successfully
+                  status:
+                    type: string
+                    example: success
+              examples:
+                Refresh token:
+                  value:
+                    code: 200
+                    data:
+                      access_token: >-
+                        eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL3YxL2F1dGgvcmVmcmVzaCIsImlhdCI6MTY5Mjk3MDk2MiwiZXhwIjoxNjkyOTc0ODIzLCJuYmYiOjE2OTI5NzEyMjMsImp0aSI6IjdFcHU5YmJlU29NRFJMREoiLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.XYMvLfZjHTxgsfKkku0g6P0HlYlb7ycAN2xmKxCoU0k
+                      refresh_token: >-
+                        eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL3YxL2F1dGgvcmVmcmVzaCIsImlhdCI6MTY5Mjk3MDk2MiwiZXhwIjoxNjkyOTc0ODIzLCJuYmYiOjE2OTI5NzEyMjMsImp0aSI6IkcxdUdPTktEY3pHUm1HbUYiLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.LjrUZdy0vOIDxjIEwM0KD1L6p1GdJv70vmVMVgkMepM
+                      token_type: bearer
+                    message: Request processed successfully
+                    status: success
+        '401':
+          description: Refresh token
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Fri, 25 Aug 2023 13:53:24 GMT
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.1
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                    example: 401
+                  data:
+                    nullable: true
+                    example: null
+                  message:
+                    type: string
+                    example: Unauthorized route, please login first
+                  status:
+                    type: string
+                    example: error
+              examples:
+                Refresh token:
+                  value:
+                    code: 401
+                    data: null
+                    message: Unauthorized route, please login first
+                    status: error
   /auth/me:
     post:
       tags:
@@ -138,7 +321,143 @@ paths:
               password: '123456'
       responses:
         '200':
-          description: ''
+          description: Get user success
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Fri, 25 Aug 2023 13:47:14 GMT
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.1
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '57'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                    example: 200
+                  data:
+                    type: object
+                    properties:
+                      created_at:
+                        type: string
+                        example: '2023-08-25T06:25:42.000000Z'
+                      email:
+                        type: string
+                        example: admin@gmail.com
+                      email_verified_at:
+                        nullable: true
+                        example: null
+                      first_name:
+                        type: string
+                        example: Admin
+                      id:
+                        type: number
+                        example: 1
+                      last_name:
+                        type: string
+                        example: User
+                      updated_at:
+                        type: string
+                        example: '2023-08-25T06:25:42.000000Z'
+                  message:
+                    type: string
+                    example: Request processed successfully
+                  status:
+                    type: string
+                    example: success
+              examples:
+                Get user success:
+                  value:
+                    code: 200
+                    data:
+                      created_at: '2023-08-25T06:25:42.000000Z'
+                      email: admin@gmail.com
+                      email_verified_at: null
+                      first_name: Admin
+                      id: 1
+                      last_name: User
+                      updated_at: '2023-08-25T06:25:42.000000Z'
+                    message: Request processed successfully
+                    status: success
+        '401':
+          description: Unauthorized Request
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Fri, 25 Aug 2023 13:54:02 GMT
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.1
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                    example: 401
+                  data:
+                    nullable: true
+                    example: null
+                  message:
+                    type: string
+                    example: Unauthorized route, please login first
+                  status:
+                    type: string
+                    example: error
+              examples:
+                Unauthorized Request:
+                  value:
+                    code: 401
+                    data: null
+                    message: Unauthorized route, please login first
+                    status: error
   /auth/logout:
     post:
       tags:
@@ -164,6 +483,53 @@ paths:
       responses:
         '200':
           description: ''
+        '500':
+          description: invalidate a token
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Fri, 25 Aug 2023 13:52:58 GMT
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.1
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '59'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: You must have the blacklist enabled to invalidate a token.
+              examples:
+                invalidate a token:
+                  value:
+                    message: You must have the blacklist enabled to invalidate a token.
   /users:
     get:
       tags:
@@ -214,7 +580,234 @@ paths:
               password: '123456'
       responses:
         '200':
-          description: ''
+          description: Get all
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Fri, 25 Aug 2023 13:47:45 GMT
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.1
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '55'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  current_page:
+                    type: number
+                    example: 1
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        created_at:
+                          type: string
+                          example: '2023-08-25T06:25:42.000000Z'
+                        email:
+                          type: string
+                          example: admin@gmail.com
+                        email_verified_at:
+                          nullable: true
+                          example: null
+                        first_name:
+                          type: string
+                          example: Admin
+                        id:
+                          type: number
+                          example: 1
+                        last_name:
+                          type: string
+                          example: User
+                        roles:
+                          type: array
+                          items:
+                            type: string
+                            example: admin
+                          example:
+                            - admin
+                        updated_at:
+                          type: string
+                          example: '2023-08-25T06:25:42.000000Z'
+                    example:
+                      - created_at: '2023-08-25T06:25:42.000000Z'
+                        email: admin@gmail.com
+                        email_verified_at: null
+                        first_name: Admin
+                        id: 1
+                        last_name: User
+                        roles:
+                          - admin
+                        updated_at: '2023-08-25T06:25:42.000000Z'
+                      - created_at: '2023-08-25T06:25:43.000000Z'
+                        email: user@gmail.com
+                        email_verified_at: null
+                        first_name: User
+                        id: 2
+                        last_name: User
+                        roles:
+                          - user
+                        updated_at: '2023-08-25T06:25:43.000000Z'
+                      - created_at: '2023-08-25T06:25:43.000000Z'
+                        email: superadmin@gmail.com
+                        email_verified_at: null
+                        first_name: Super
+                        id: 3
+                        last_name: Admin
+                        roles:
+                          - super_admin
+                        updated_at: '2023-08-25T06:25:43.000000Z'
+                      - created_at: '2023-08-25T06:30:08.000000Z'
+                        email: john.doe@example.com
+                        email_verified_at: null
+                        first_name: John
+                        id: 4
+                        last_name: Doe
+                        roles:
+                          - admin
+                        updated_at: '2023-08-25T06:30:08.000000Z'
+                  first_page_url:
+                    type: string
+                    example: http://localhost:8000/api/v1/users?page=1
+                  from:
+                    type: number
+                    example: 1
+                  last_page:
+                    type: number
+                    example: 1
+                  last_page_url:
+                    type: string
+                    example: http://localhost:8000/api/v1/users?page=1
+                  links:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        active:
+                          type: boolean
+                          example: false
+                        label:
+                          type: string
+                          example: '&laquo; Previous'
+                        url:
+                          type: string
+                          nullable: true
+                          example: null
+                    example:
+                      - active: false
+                        label: '&laquo; Previous'
+                        url: null
+                      - active: true
+                        label: '1'
+                        url: http://localhost:8000/api/v1/users?page=1
+                      - active: false
+                        label: Next &raquo;
+                        url: null
+                  next_page_url:
+                    nullable: true
+                    example: null
+                  path:
+                    type: string
+                    example: http://localhost:8000/api/v1/users
+                  per_page:
+                    type: number
+                    example: 20
+                  prev_page_url:
+                    nullable: true
+                    example: null
+                  to:
+                    type: number
+                    example: 4
+                  total:
+                    type: number
+                    example: 4
+              examples:
+                Get all:
+                  value:
+                    current_page: 1
+                    data:
+                      - created_at: '2023-08-25T06:25:42.000000Z'
+                        email: admin@gmail.com
+                        email_verified_at: null
+                        first_name: Admin
+                        id: 1
+                        last_name: User
+                        roles:
+                          - admin
+                        updated_at: '2023-08-25T06:25:42.000000Z'
+                      - created_at: '2023-08-25T06:25:43.000000Z'
+                        email: user@gmail.com
+                        email_verified_at: null
+                        first_name: User
+                        id: 2
+                        last_name: User
+                        roles:
+                          - user
+                        updated_at: '2023-08-25T06:25:43.000000Z'
+                      - created_at: '2023-08-25T06:25:43.000000Z'
+                        email: superadmin@gmail.com
+                        email_verified_at: null
+                        first_name: Super
+                        id: 3
+                        last_name: Admin
+                        roles:
+                          - super_admin
+                        updated_at: '2023-08-25T06:25:43.000000Z'
+                      - created_at: '2023-08-25T06:30:08.000000Z'
+                        email: john.doe@example.com
+                        email_verified_at: null
+                        first_name: John
+                        id: 4
+                        last_name: Doe
+                        roles:
+                          - admin
+                        updated_at: '2023-08-25T06:30:08.000000Z'
+                    first_page_url: http://localhost:8000/api/v1/users?page=1
+                    from: 1
+                    last_page: 1
+                    last_page_url: http://localhost:8000/api/v1/users?page=1
+                    links:
+                      - active: false
+                        label: '&laquo; Previous'
+                        url: null
+                      - active: true
+                        label: '1'
+                        url: http://localhost:8000/api/v1/users?page=1
+                      - active: false
+                        label: Next &raquo;
+                        url: null
+                    next_page_url: null
+                    path: http://localhost:8000/api/v1/users
+                    per_page: 20
+                    prev_page_url: null
+                    to: 4
+                    total: 4
     post:
       tags:
         - User
@@ -229,7 +822,7 @@ paths:
               properties:
                 email:
                   type: string
-                  example: john.doed@example.com
+                  example: john.doed1@example.com
                 first_name:
                   type: string
                   example: John
@@ -248,7 +841,7 @@ paths:
                     - admin
                     - user
             example:
-              email: john.doed@example.com
+              email: john.doed1@example.com
               first_name: John
               last_name: Doe
               password: secret
@@ -257,8 +850,196 @@ paths:
                 - user
       responses:
         '200':
-          description: ''
-  /users/12:
+          description: User created successfully
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Fri, 25 Aug 2023 13:56:18 GMT
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.1
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '58'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                    example: 200
+                  data:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: User created successfully
+                  message:
+                    type: string
+                    example: Request processed successfully
+                  status:
+                    type: string
+                    example: success
+              examples:
+                User created successfully:
+                  value:
+                    code: 200
+                    data:
+                      message: User created successfully
+                    message: Request processed successfully
+                    status: success
+        '400':
+          description: Role users does not exist
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Fri, 25 Aug 2023 13:56:56 GMT
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.1
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '56'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                    example: 400
+                  data:
+                    nullable: true
+                    example: null
+                  message:
+                    type: string
+                    example: Role users does not exist
+                  status:
+                    type: string
+                    example: error
+              examples:
+                Role users does not exist:
+                  value:
+                    code: 400
+                    data: null
+                    message: Role users does not exist
+                    status: error
+        '422':
+          description: Unprocessable Entity
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Fri, 25 Aug 2023 13:56:30 GMT
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.1
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '57'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                    example: 422
+                  data:
+                    type: object
+                    properties:
+                      email:
+                        type: array
+                        items:
+                          type: string
+                          example: The email has already been taken.
+                        example:
+                          - The email has already been taken.
+                  message:
+                    type: string
+                    example: Unprocessable Entity
+                  status:
+                    type: string
+                    example: error
+              examples:
+                Unprocessable Entity:
+                  value:
+                    code: 422
+                    data:
+                      email:
+                        - The email has already been taken.
+                    message: Unprocessable Entity
+                    status: error
+  /users/1:
     get:
       tags:
         - User
@@ -282,7 +1063,291 @@ paths:
               password: '123456'
       responses:
         '200':
-          description: ''
+          description: Get user success by Id
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Fri, 25 Aug 2023 13:48:36 GMT
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.1
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '55'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                    example: 200
+                  data:
+                    type: object
+                    properties:
+                      created_at:
+                        type: string
+                        example: '2023-08-25T06:25:42.000000Z'
+                      email:
+                        type: string
+                        example: admin@gmail.com
+                      email_verified_at:
+                        nullable: true
+                        example: null
+                      first_name:
+                        type: string
+                        example: Admin
+                      id:
+                        type: number
+                        example: 1
+                      last_name:
+                        type: string
+                        example: User
+                      roles:
+                        type: array
+                        items:
+                          type: string
+                          example: admin
+                        example:
+                          - admin
+                      updated_at:
+                        type: string
+                        example: '2023-08-25T06:25:42.000000Z'
+                  message:
+                    type: string
+                    example: Request processed successfully
+                  status:
+                    type: string
+                    example: success
+              examples:
+                Get user success by Id:
+                  value:
+                    code: 200
+                    data:
+                      created_at: '2023-08-25T06:25:42.000000Z'
+                      email: admin@gmail.com
+                      email_verified_at: null
+                      first_name: Admin
+                      id: 1
+                      last_name: User
+                      roles:
+                        - admin
+                      updated_at: '2023-08-25T06:25:42.000000Z'
+                    message: Request processed successfully
+                    status: success
+        '404':
+          description: User not found
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Fri, 25 Aug 2023 13:48:11 GMT
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.1
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '57'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                    example: 404
+                  data:
+                    nullable: true
+                    example: null
+                  message:
+                    type: string
+                    example: User not found
+                  status:
+                    type: string
+                    example: error
+              examples:
+                User not found:
+                  value:
+                    code: 404
+                    data: null
+                    message: User not found
+                    status: error
+  /users/3:
+    delete:
+      tags:
+        - User
+      summary: Delete by Id
+      description: Delete by Id
+      operationId: deleteById
+      responses:
+        '200':
+          description: Delete by Id
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Fri, 25 Aug 2023 13:56:03 GMT
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.1
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '59'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                    example: 200
+                  data:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: User deleted successfully
+                  message:
+                    type: string
+                    example: Request processed successfully
+                  status:
+                    type: string
+                    example: success
+              examples:
+                Delete by Id:
+                  value:
+                    code: 200
+                    data:
+                      message: User deleted successfully
+                    message: Request processed successfully
+                    status: success
+        '404':
+          description: Delete by Id
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Fri, 25 Aug 2023 13:55:49 GMT
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.1
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '58'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                    example: 404
+                  data:
+                    nullable: true
+                    example: null
+                  message:
+                    type: string
+                    example: User not found
+                  status:
+                    type: string
+                    example: error
+              examples:
+                Delete by Id:
+                  value:
+                    code: 404
+                    data: null
+                    message: User not found
+                    status: error
+  /users/12:
     put:
       tags:
         - User
@@ -297,7 +1362,7 @@ paths:
               properties:
                 email:
                   type: string
-                  example: john.doed@example.com
+                  example: john.doe1d@example.com
                 first_name:
                   type: string
                   example: John
@@ -316,7 +1381,7 @@ paths:
                     - admin
                     - user
             example:
-              email: john.doed@example.com
+              email: john.doe1d@example.com
               first_name: John
               last_name: Doe
               password: secret
@@ -326,15 +1391,133 @@ paths:
       responses:
         '200':
           description: ''
-    delete:
-      tags:
-        - User
-      summary: Delete by Id
-      description: Delete by Id
-      operationId: deleteById
-      responses:
-        '200':
-          description: ''
+        '404':
+          description: User not found
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Fri, 25 Aug 2023 13:58:10 GMT
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.1
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '56'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                    example: 404
+                  data:
+                    nullable: true
+                    example: null
+                  message:
+                    type: string
+                    example: User not found
+                  status:
+                    type: string
+                    example: error
+              examples:
+                User not found:
+                  value:
+                    code: 404
+                    data: null
+                    message: User not found
+                    status: error
+        '422':
+          description: Unprocessable Entity
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Fri, 25 Aug 2023 13:57:41 GMT
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.1
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '57'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                    example: 422
+                  data:
+                    type: object
+                    properties:
+                      email:
+                        type: array
+                        items:
+                          type: string
+                          example: The email has already been taken.
+                        example:
+                          - The email has already been taken.
+                  message:
+                    type: string
+                    example: Unprocessable Entity
+                  status:
+                    type: string
+                    example: error
+              examples:
+                Unprocessable Entity:
+                  value:
+                    code: 422
+                    data:
+                      email:
+                        - The email has already been taken.
+                    message: Unprocessable Entity
+                    status: error
   /departments:
     get:
       tags:
@@ -365,7 +1548,224 @@ paths:
             example: Marketing
       responses:
         '200':
-          description: ''
+          description: Get all success
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Fri, 25 Aug 2023 13:58:46 GMT
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.1
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '59'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  current_page:
+                    type: number
+                    example: 1
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: DP_001
+                        created_at:
+                          type: string
+                          example: '2023-08-25T06:25:44.000000Z'
+                        description:
+                          type: string
+                          example: Sales department
+                        id:
+                          type: number
+                          example: 1
+                        name:
+                          type: string
+                          example: Sales
+                        updated_at:
+                          type: string
+                          example: '2023-08-25T06:25:44.000000Z'
+                    example:
+                      - code: DP_001
+                        created_at: '2023-08-25T06:25:44.000000Z'
+                        description: Sales department
+                        id: 1
+                        name: Sales
+                        updated_at: '2023-08-25T06:25:44.000000Z'
+                      - code: DP_002
+                        created_at: '2023-08-25T06:25:44.000000Z'
+                        description: Marketing department
+                        id: 2
+                        name: Marketing
+                        updated_at: '2023-08-25T06:25:44.000000Z'
+                      - code: DP_003
+                        created_at: '2023-08-25T06:25:44.000000Z'
+                        description: Finance department
+                        id: 3
+                        name: Finance
+                        updated_at: '2023-08-25T06:25:44.000000Z'
+                      - code: DP_004
+                        created_at: '2023-08-25T06:25:45.000000Z'
+                        description: Human Resources department
+                        id: 4
+                        name: Human Resources
+                        updated_at: '2023-08-25T06:25:45.000000Z'
+                      - code: DP_005
+                        created_at: '2023-08-25T06:25:45.000000Z'
+                        description: Information Technology department
+                        id: 5
+                        name: Information Technology
+                        updated_at: '2023-08-25T06:25:45.000000Z'
+                      - code: DP_006
+                        created_at: '2023-08-25T06:25:45.000000Z'
+                        description: Operations department
+                        id: 6
+                        name: Operations
+                        updated_at: '2023-08-25T06:25:45.000000Z'
+                  first_page_url:
+                    type: string
+                    example: http://localhost:8000/api/v1/departments?page=1
+                  from:
+                    type: number
+                    example: 1
+                  last_page:
+                    type: number
+                    example: 1
+                  last_page_url:
+                    type: string
+                    example: http://localhost:8000/api/v1/departments?page=1
+                  links:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        active:
+                          type: boolean
+                          example: false
+                        label:
+                          type: string
+                          example: '&laquo; Previous'
+                        url:
+                          type: string
+                          nullable: true
+                          example: null
+                    example:
+                      - active: false
+                        label: '&laquo; Previous'
+                        url: null
+                      - active: true
+                        label: '1'
+                        url: http://localhost:8000/api/v1/departments?page=1
+                      - active: false
+                        label: Next &raquo;
+                        url: null
+                  next_page_url:
+                    nullable: true
+                    example: null
+                  path:
+                    type: string
+                    example: http://localhost:8000/api/v1/departments
+                  per_page:
+                    type: number
+                    example: 20
+                  prev_page_url:
+                    nullable: true
+                    example: null
+                  to:
+                    type: number
+                    example: 6
+                  total:
+                    type: number
+                    example: 6
+              examples:
+                Get all success:
+                  value:
+                    current_page: 1
+                    data:
+                      - code: DP_001
+                        created_at: '2023-08-25T06:25:44.000000Z'
+                        description: Sales department
+                        id: 1
+                        name: Sales
+                        updated_at: '2023-08-25T06:25:44.000000Z'
+                      - code: DP_002
+                        created_at: '2023-08-25T06:25:44.000000Z'
+                        description: Marketing department
+                        id: 2
+                        name: Marketing
+                        updated_at: '2023-08-25T06:25:44.000000Z'
+                      - code: DP_003
+                        created_at: '2023-08-25T06:25:44.000000Z'
+                        description: Finance department
+                        id: 3
+                        name: Finance
+                        updated_at: '2023-08-25T06:25:44.000000Z'
+                      - code: DP_004
+                        created_at: '2023-08-25T06:25:45.000000Z'
+                        description: Human Resources department
+                        id: 4
+                        name: Human Resources
+                        updated_at: '2023-08-25T06:25:45.000000Z'
+                      - code: DP_005
+                        created_at: '2023-08-25T06:25:45.000000Z'
+                        description: Information Technology department
+                        id: 5
+                        name: Information Technology
+                        updated_at: '2023-08-25T06:25:45.000000Z'
+                      - code: DP_006
+                        created_at: '2023-08-25T06:25:45.000000Z'
+                        description: Operations department
+                        id: 6
+                        name: Operations
+                        updated_at: '2023-08-25T06:25:45.000000Z'
+                    first_page_url: http://localhost:8000/api/v1/departments?page=1
+                    from: 1
+                    last_page: 1
+                    last_page_url: http://localhost:8000/api/v1/departments?page=1
+                    links:
+                      - active: false
+                        label: '&laquo; Previous'
+                        url: null
+                      - active: true
+                        label: '1'
+                        url: http://localhost:8000/api/v1/departments?page=1
+                      - active: false
+                        label: Next &raquo;
+                        url: null
+                    next_page_url: null
+                    path: http://localhost:8000/api/v1/departments
+                    per_page: 20
+                    prev_page_url: null
+                    to: 6
+                    total: 6
     post:
       tags:
         - Departments
@@ -380,17 +1780,166 @@ paths:
               properties:
                 description:
                   type: string
-                  example: testing
+                  example: DevOps
                 name:
                   type: string
-                  example: admissssn
+                  example: DevOps
             example:
-              description: testing
-              name: admissssn
+              description: DevOps
+              name: DevOps
       responses:
         '200':
-          description: ''
-  /departments/11:
+          description: Create new
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Fri, 25 Aug 2023 14:11:09 GMT
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.1
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '59'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                    example: 200
+                  data:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                        example: DP_006
+                      created_at:
+                        type: string
+                        example: '2023-08-25T14:11:09.000000Z'
+                      description:
+                        type: string
+                        example: DevOps
+                      id:
+                        type: number
+                        example: 7
+                      name:
+                        type: string
+                        example: DevOps
+                      updated_at:
+                        type: string
+                        example: '2023-08-25T14:11:09.000000Z'
+                  message:
+                    type: string
+                    example: Request processed successfully
+                  status:
+                    type: string
+                    example: success
+              examples:
+                Create new:
+                  value:
+                    code: 200
+                    data:
+                      code: DP_006
+                      created_at: '2023-08-25T14:11:09.000000Z'
+                      description: DevOps
+                      id: 7
+                      name: DevOps
+                      updated_at: '2023-08-25T14:11:09.000000Z'
+                    message: Request processed successfully
+                    status: success
+        '422':
+          description: Unprocessable Entity
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Fri, 25 Aug 2023 14:11:37 GMT
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.1
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '56'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                    example: 422
+                  data:
+                    type: object
+                    properties:
+                      name:
+                        type: array
+                        items:
+                          type: string
+                          example: The name field must be a string.
+                        example:
+                          - The name field must be a string.
+                  message:
+                    type: string
+                    example: Unprocessable Entity
+                  status:
+                    type: string
+                    example: error
+              examples:
+                Unprocessable Entity:
+                  value:
+                    code: 422
+                    data:
+                      name:
+                        - The name field must be a string.
+                    message: Unprocessable Entity
+                    status: error
+  /departments/12:
     get:
       tags:
         - Departments
@@ -399,8 +1948,148 @@ paths:
       operationId: getOneById1
       responses:
         '200':
-          description: ''
-  /departments/10:
+          description: Get one by Id
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Fri, 25 Aug 2023 13:59:13 GMT
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.1
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '57'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                    example: 200
+                  data:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                        example: DP_001
+                      created_at:
+                        type: string
+                        example: '2023-08-25T06:25:44.000000Z'
+                      description:
+                        type: string
+                        example: Sales department
+                      id:
+                        type: number
+                        example: 1
+                      name:
+                        type: string
+                        example: Sales
+                      updated_at:
+                        type: string
+                        example: '2023-08-25T06:25:44.000000Z'
+                  message:
+                    type: string
+                    example: Request processed successfully
+                  status:
+                    type: string
+                    example: success
+              examples:
+                Get one by Id:
+                  value:
+                    code: 200
+                    data:
+                      code: DP_001
+                      created_at: '2023-08-25T06:25:44.000000Z'
+                      description: Sales department
+                      id: 1
+                      name: Sales
+                      updated_at: '2023-08-25T06:25:44.000000Z'
+                    message: Request processed successfully
+                    status: success
+        '404':
+          description: Department not found
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Fri, 25 Aug 2023 13:59:29 GMT
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.1
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '56'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                    example: 404
+                  data:
+                    nullable: true
+                    example: null
+                  message:
+                    type: string
+                    example: Department not found
+                  status:
+                    type: string
+                    example: error
+              examples:
+                Department not found:
+                  value:
+                    code: 404
+                    data: null
+                    message: Department not found
+                    status: error
+  /departments/6:
     delete:
       tags:
         - Departments
@@ -409,8 +2098,128 @@ paths:
       operationId: deleteById1
       responses:
         '200':
-          description: ''
-  /departments/12:
+          description: Department deleted successfully
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Fri, 25 Aug 2023 14:10:17 GMT
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.1
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '57'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                    example: 200
+                  data:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: Department deleted successfully
+                  message:
+                    type: string
+                    example: Request processed successfully
+                  status:
+                    type: string
+                    example: success
+              examples:
+                Department deleted successfully:
+                  value:
+                    code: 200
+                    data:
+                      message: Department deleted successfully
+                    message: Request processed successfully
+                    status: success
+        '404':
+          description: Department not found
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Fri, 25 Aug 2023 14:09:23 GMT
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.1
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '59'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                    example: 404
+                  data:
+                    nullable: true
+                    example: null
+                  message:
+                    type: string
+                    example: Department not found
+                  status:
+                    type: string
+                    example: error
+              examples:
+                Department not found:
+                  value:
+                    code: 404
+                    data: null
+                    message: Department not found
+                    status: error
+  /departments/1:
     put:
       tags:
         - Departments
@@ -434,7 +2243,147 @@ paths:
               name: Sales
       responses:
         '200':
-          description: ''
+          description: Update success
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Fri, 25 Aug 2023 14:12:27 GMT
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.1
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '58'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                    example: 200
+                  data:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                        example: DP_001
+                      created_at:
+                        type: string
+                        example: '2023-08-25T06:25:44.000000Z'
+                      description:
+                        type: string
+                        example: Update description
+                      id:
+                        type: number
+                        example: 1
+                      name:
+                        type: string
+                        example: Sales
+                      updated_at:
+                        type: string
+                        example: '2023-08-25T14:12:27.000000Z'
+                  message:
+                    type: string
+                    example: Request processed successfully
+                  status:
+                    type: string
+                    example: success
+              examples:
+                Update success:
+                  value:
+                    code: 200
+                    data:
+                      code: DP_001
+                      created_at: '2023-08-25T06:25:44.000000Z'
+                      description: Update description
+                      id: 1
+                      name: Sales
+                      updated_at: '2023-08-25T14:12:27.000000Z'
+                    message: Request processed successfully
+                    status: success
+        '404':
+          description: Department not found
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Fri, 25 Aug 2023 14:12:04 GMT
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.1
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '55'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                    example: 404
+                  data:
+                    nullable: true
+                    example: null
+                  message:
+                    type: string
+                    example: Department not found
+                  status:
+                    type: string
+                    example: error
+              examples:
+                Department not found:
+                  value:
+                    code: 404
+                    data: null
+                    message: Department not found
+                    status: error
   /departments/map:
     post:
       tags:
@@ -459,7 +2408,145 @@ paths:
               position_id: 3
       responses:
         '200':
-          description: ''
+          description: Position mapped
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Fri, 25 Aug 2023 14:12:45 GMT
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.1
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '57'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                    example: 200
+                  data:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: Position mapped to department successfully
+                  message:
+                    type: string
+                    example: Request processed successfully
+                  status:
+                    type: string
+                    example: success
+              examples:
+                Position mapped:
+                  value:
+                    code: 200
+                    data:
+                      message: Position mapped to department successfully
+                    message: Request processed successfully
+                    status: success
+        '422':
+          description: Unprocessable Entity
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Fri, 25 Aug 2023 14:13:07 GMT
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.1
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '55'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                    example: 422
+                  data:
+                    type: object
+                    properties:
+                      department_id:
+                        type: array
+                        items:
+                          type: string
+                          example: The department id field is required.
+                        example:
+                          - The department id field is required.
+                      position_id:
+                        type: array
+                        items:
+                          type: string
+                          example: The position id field is required.
+                        example:
+                          - The position id field is required.
+                  message:
+                    type: string
+                    example: Unprocessable Entity
+                  status:
+                    type: string
+                    example: error
+              examples:
+                Unprocessable Entity:
+                  value:
+                    code: 422
+                    data:
+                      department_id:
+                        - The department id field is required.
+                      position_id:
+                        - The position id field is required.
+                    message: Unprocessable Entity
+                    status: error
   /departments/unmap:
     post:
       tags:
@@ -478,13 +2565,142 @@ paths:
                   example: 1
                 position_id:
                   type: number
-                  example: 3
+                  example: 32
             example:
               department_id: 1
-              position_id: 3
+              position_id: 32
       responses:
         '200':
-          description: ''
+          description: Position unmapped
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Fri, 25 Aug 2023 14:13:42 GMT
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.1
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '58'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                    example: 200
+                  data:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: Position unmapped from department successfully
+                  message:
+                    type: string
+                    example: Request processed successfully
+                  status:
+                    type: string
+                    example: success
+              examples:
+                Position unmapped:
+                  value:
+                    code: 200
+                    data:
+                      message: Position unmapped from department successfully
+                    message: Request processed successfully
+                    status: success
+        '422':
+          description: Unprocessable Entity
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Fri, 25 Aug 2023 14:13:59 GMT
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.1
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '56'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                    example: 422
+                  data:
+                    type: object
+                    properties:
+                      position_id:
+                        type: array
+                        items:
+                          type: string
+                          example: The selected position id is invalid.
+                        example:
+                          - The selected position id is invalid.
+                  message:
+                    type: string
+                    example: Unprocessable Entity
+                  status:
+                    type: string
+                    example: error
+              examples:
+                Unprocessable Entity:
+                  value:
+                    code: 422
+                    data:
+                      position_id:
+                        - The selected position id is invalid.
+                    message: Unprocessable Entity
+                    status: error
   /departments/1/positions:
     get:
       tags:
@@ -494,7 +2710,97 @@ paths:
       operationId: getPositionByDepartment
       responses:
         '200':
-          description: ''
+          description: Get position by department
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Fri, 25 Aug 2023 14:15:11 GMT
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.1
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '57'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                    example: 200
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: PO_003
+                        created_at:
+                          type: string
+                          example: '2023-08-25T06:25:46.000000Z'
+                        description:
+                          type: string
+                          example: Backend Developer
+                        id:
+                          type: number
+                          example: 3
+                        name:
+                          type: string
+                          example: Backend Developer
+                        updated_at:
+                          type: string
+                          example: '2023-08-25T06:25:46.000000Z'
+                    example:
+                      - code: PO_003
+                        created_at: '2023-08-25T06:25:46.000000Z'
+                        description: Backend Developer
+                        id: 3
+                        name: Backend Developer
+                        updated_at: '2023-08-25T06:25:46.000000Z'
+                  message:
+                    type: string
+                    example: Request processed successfully
+                  status:
+                    type: string
+                    example: success
+              examples:
+                Get position by department:
+                  value:
+                    code: 200
+                    data:
+                      - code: PO_003
+                        created_at: '2023-08-25T06:25:46.000000Z'
+                        description: Backend Developer
+                        id: 3
+                        name: Backend Developer
+                        updated_at: '2023-08-25T06:25:46.000000Z'
+                    message: Request processed successfully
+                    status: success
   /positions:
     get:
       tags:
