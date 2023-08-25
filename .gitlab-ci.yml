@@ -5,7 +5,7 @@ before_script:
   - npm i -g @redocly/cli@latest
 pages:
   script:
-    - redocly build-docs openapi.yaml
+    - redocly build-docs openapi.yaml --output=public/index.html
   artifacts:
     paths:
       # The folder that contains the files to be exposed at the Page URL
