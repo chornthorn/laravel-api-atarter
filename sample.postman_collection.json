@@ -1,0 +1,1870 @@
+{
+	"info": {
+		"_postman_id": "cf8c2a5b-dc9b-471f-9d0f-59a6651af978",
+		"name": "Laravel API Starter",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11715847",
+		"_collection_link": "https://grey-shuttle-91663.postman.co/workspace/Prometeus-KC~750a08fe-e017-4f88-9dd5-da7ade0b0d8b/collection/11715847-cf8c2a5b-dc9b-471f-9d0f-59a6651af978?action=share&source=collection_link&creator=11715847"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									"",
+									"// Test for response status",
+									"pm.test(\"Response status is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"",
+									"    var jsonData = pm.response.json();",
+									"    var accessToken = jsonData.data.access_token;",
+									"    var refrreshToken = jsonData.data.refresh_token;",
+									"    pm.collectionVariables.set(\"token\", accessToken);",
+									"    pm.collectionVariables.set(\"refresh_token\", refrreshToken);",
+									"});",
+									"",
+									"// Test for the presence of access_token property",
+									"pm.test(\"access_token property is present\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property(\"access_token\");",
+									"});",
+									"",
+									"// Test for the presence of token_type property",
+									"pm.test(\"token_type property is present\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property(\"token_type\");",
+									"});",
+									"",
+									"// Test for the presence of expires_in property",
+									"pm.test(\"expires_in property is present\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property(\"expires_in\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "eyJ4NXQiOiJPREUzWTJaaE1UQmpNRE00WlRCbU1qQXlZemxpWVRJMllqUmhZVFpsT0dJeVptVXhOV0UzWVE9PSIsImtpZCI6ImdhdGV3YXlfY2VydGlmaWNhdGVfYWxpYXMiLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhZG1pbkBjYXJib24uc3VwZXIiLCJhcHBsaWNhdGlvbiI6eyJvd25lciI6ImFkbWluIiwidGllclF1b3RhVHlwZSI6bnVsbCwidGllciI6IjEwUGVyTWluIiwibmFtZSI6IkhlbGxvIFdvcmxkIiwiaWQiOjIsInV1aWQiOiI2OTE0ZjdiNy1mYjc1LTRkOWQtYjczNC0xODVmMjJjZTMxMzMifSwiaXNzIjoiaHR0cHM6XC9cL2xvY2FsaG9zdDo5NDQzXC9vYXV0aDJcL3Rva2VuIiwidGllckluZm8iOnsiQnJvbnplIjp7InRpZXJRdW90YVR5cGUiOiJyZXF1ZXN0Q291bnQiLCJncmFwaFFMTWF4Q29tcGxleGl0eSI6MCwiZ3JhcGhRTE1heERlcHRoIjowLCJzdG9wT25RdW90YVJlYWNoIjp0cnVlLCJzcGlrZUFycmVzdExpbWl0IjowLCJzcGlrZUFycmVzdFVuaXQiOm51bGx9fSwia2V5dHlwZSI6IlBST0RVQ1RJT04iLCJwZXJtaXR0ZWRSZWZlcmVyIjoiIiwic3Vic2NyaWJlZEFQSXMiOlt7InN1YnNjcmliZXJUZW5hbnREb21haW4iOiJjYXJib24uc3VwZXIiLCJuYW1lIjoiUHJvbWV0ZXVzQWNjb3VudGluZ0FQSSIsImNvbnRleHQiOiJcL3Byb21ldGV1c2FjY291bnRpbmdhcGlcLzEuMC4wIiwicHVibGlzaGVyIjoiYWRtaW4iLCJ2ZXJzaW9uIjoiMS4wLjAiLCJzdWJzY3JpcHRpb25UaWVyIjoiQnJvbnplIn1dLCJ0b2tlbl90eXBlIjoiYXBpS2V5IiwicGVybWl0dGVkSVAiOiIiLCJpYXQiOjE2OTMwNTYyMjQsImp0aSI6IjJmNzVhZWMyLTZlYzItNGQ5ZS1hOWM2LTY1NTk4MjFmY2EyNSJ9.kUP5xZUzZak6Ywu5NfikkzWt8w8dBCadZclCy5qjJOJfd89gcTnOTrUa8VVIQsIiPi0rZNu9DQqbC_S0Dfvz75hrHdFVGcdMiB5CfsA2XU6kit9BJPmhjblD9B_cHj7ccrtDTSps9R--0zBT2tyj0xjQ-zT4hSQmZNzQ4kt0L3rOp19xHTvc2Vq6FjQtcdmnUTPFrDi7YouElBa4UacwI1Eg0lb4EVgYFn_JC4KTFp0yGWze9ztTfqykfKtI-iD6ebjII7pekGKg5dyXo6s7yIOiCF5aV-z_ji_g1FaKQkxJ33uTIrCH7J6atm8FA8eootVBDOyXdQsEDHLlFJ6lNw==",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin@gmail.com\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"admin@gmail.com\",\n    \"password\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 25 Aug 2023 13:42:24 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 25 Aug 2023 13:42:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.1"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Request processed successfully\",\n    \"status\": \"success\",\n    \"code\": 200,\n    \"data\": {\n        \"access_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL3YxL2F1dGgvbG9naW4iLCJpYXQiOjE2OTI5NzA5NDQsImV4cCI6MTY5Mjk3NDU0NCwibmJmIjoxNjkyOTcwOTQ0LCJqdGkiOiJzd1NtVU85MjA0QW5yZHhLIiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.hCaYZ5SOduBcWaNJBcnPCtKHJzpZYSLlfKeFVxDq_RE\",\n        \"refresh_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL3YxL2F1dGgvbG9naW4iLCJpYXQiOjE2OTI5NzA5NDQsImV4cCI6MTY5Mjk3NDU0NCwibmJmIjoxNjkyOTcwOTQ0LCJqdGkiOiJJMTVPVGd0Y3lYNGpSb0phIiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.2ENhczsJpZxwhU7s46PhlhwkPut_yMZyc8K9fxgQhjw\",\n        \"token_type\": \"bearer\"\n    }\n}"
+						},
+						{
+							"name": "Invalid credentials",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"admin@gmail.cosm\",\n    \"password\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 25 Aug 2023 13:48:57 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 25 Aug 2023 13:48:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.1"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Invalid credentials, please try again.\",\n    \"status\": \"error\",\n    \"code\": 400,\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Refresh token",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Test for response status",
+									"pm.test(\"Response status is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"",
+									"    var jsonData = pm.response.json();",
+									"    var accessToken = jsonData.data.access_token;",
+									"    var refrreshToken = jsonData.data.refresh_token;",
+									"    pm.collectionVariables.set(\"token\", accessToken);",
+									"    pm.collectionVariables.set(\"refresh_token\", refrreshToken);",
+									"});",
+									"",
+									"// Test for the presence of access_token property",
+									"pm.test(\"access_token property is present\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property(\"access_token\");",
+									"});",
+									"",
+									"// Test for the presence of token_type property",
+									"pm.test(\"token_type property is present\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property(\"token_type\");",
+									"});",
+									"",
+									"// Test for the presence of expires_in property",
+									"pm.test(\"expires_in property is present\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property(\"expires_in\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{refresh_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/auth/refresh",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"refresh"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Refresh token",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/auth/refresh",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"refresh"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 25 Aug 2023 13:47:03 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 25 Aug 2023 13:47:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.1"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Request processed successfully\",\n    \"status\": \"success\",\n    \"code\": 200,\n    \"data\": {\n        \"access_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL3YxL2F1dGgvcmVmcmVzaCIsImlhdCI6MTY5Mjk3MDk2MiwiZXhwIjoxNjkyOTc0ODIzLCJuYmYiOjE2OTI5NzEyMjMsImp0aSI6IjdFcHU5YmJlU29NRFJMREoiLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.XYMvLfZjHTxgsfKkku0g6P0HlYlb7ycAN2xmKxCoU0k\",\n        \"refresh_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL3YxL2F1dGgvcmVmcmVzaCIsImlhdCI6MTY5Mjk3MDk2MiwiZXhwIjoxNjkyOTc0ODIzLCJuYmYiOjE2OTI5NzEyMjMsImp0aSI6IkcxdUdPTktEY3pHUm1HbUYiLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.LjrUZdy0vOIDxjIEwM0KD1L6p1GdJv70vmVMVgkMepM\",\n        \"token_type\": \"bearer\"\n    }\n}"
+						},
+						{
+							"name": "Refresh token",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/auth/refresh",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"refresh"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 25 Aug 2023 13:53:24 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 25 Aug 2023 13:53:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.1"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Unauthorized route, please login first\",\n    \"status\": \"error\",\n    \"code\": 401,\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Me",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									"// Test for response status",
+									"pm.test(\"Response status is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Test for the presence of access_token property",
+									"pm.test(\"access_token property is present\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property(\"access_token\");",
+									"});",
+									"",
+									"// Test for the presence of token_type property",
+									"pm.test(\"token_type property is present\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property(\"token_type\");",
+									"});",
+									"",
+									"// Test for the presence of expires_in property",
+									"pm.test(\"expires_in property is present\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property(\"expires_in\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin@gmail.com\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/me",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get user success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"admin@gmail.com\",\n    \"password\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/me",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"me"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 25 Aug 2023 13:47:14 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 25 Aug 2023 13:47:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.1"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "57"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Request processed successfully\",\n    \"status\": \"success\",\n    \"code\": 200,\n    \"data\": {\n        \"id\": 1,\n        \"email\": \"admin@gmail.com\",\n        \"first_name\": \"Admin\",\n        \"last_name\": \"User\",\n        \"email_verified_at\": null,\n        \"created_at\": \"2023-08-25T06:25:42.000000Z\",\n        \"updated_at\": \"2023-08-25T06:25:42.000000Z\"\n    }\n}"
+						},
+						{
+							"name": "Unauthorized Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"admin@gmail.com\",\n    \"password\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/me",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"me"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 25 Aug 2023 13:54:02 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 25 Aug 2023 13:54:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.1"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Unauthorized route, please login first\",\n    \"status\": \"error\",\n    \"code\": 401,\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Test for response status",
+									"pm.test(\"Response status is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Test for the presence of access_token property",
+									"pm.test(\"access_token property is present\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property(\"access_token\");",
+									"});",
+									"",
+									"// Test for the presence of token_type property",
+									"pm.test(\"token_type property is present\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property(\"token_type\");",
+									"});",
+									"",
+									"// Test for the presence of expires_in property",
+									"pm.test(\"expires_in property is present\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property(\"expires_in\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin@gmail.com\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/logout",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "invalidate a token",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"admin@gmail.com\",\n    \"password\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/logout",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 25 Aug 2023 13:52:58 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 25 Aug 2023 13:52:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.1"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"You must have the blacklist enabled to invalidate a token.\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get all",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Test for a successful response with status code 200",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Test for the presence of the 'current_page' property",
+									"pm.test(\"Response contains 'current_page' property\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('current_page');",
+									"});",
+									"",
+									"// Test for the presence of the 'data' array",
+									"pm.test(\"Response contains 'data' array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('data').that.is.an('array');",
+									"});",
+									"",
+									"// Test for the presence of 'id', 'name', 'description', 'created_at', and 'updated_at' properties in each object of the 'data' array",
+									"pm.test(\"Each object in 'data' array contains required properties\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.data.forEach(function (department) {",
+									"        pm.expect(department).to.have.property('id');",
+									"        pm.expect(department).to.have.property('name');",
+									"        pm.expect(department).to.have.property('description');",
+									"        pm.expect(department).to.have.property('created_at');",
+									"        pm.expect(department).to.have.property('updated_at');",
+									"    });",
+									"});",
+									"",
+									"// Test for the presence of 'first_page_url', 'from', 'last_page', 'last_page_url', 'links', 'next_page_url', 'path', 'per_page', 'prev_page_url', 'to', and 'total' properties",
+									"pm.test(\"Response contains required properties\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('first_page_url');",
+									"    pm.expect(jsonData).to.have.property('from');",
+									"    pm.expect(jsonData).to.have.property('last_page');",
+									"    pm.expect(jsonData).to.have.property('last_page_url');",
+									"    pm.expect(jsonData).to.have.property('links');",
+									"    pm.expect(jsonData).to.have.property('next_page_url');",
+									"    pm.expect(jsonData).to.have.property('path');",
+									"    pm.expect(jsonData).to.have.property('per_page');",
+									"    pm.expect(jsonData).to.have.property('prev_page_url');",
+									"    pm.expect(jsonData).to.have.property('to');",
+									"    pm.expect(jsonData).to.have.property('total');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "eyJ4NXQiOiJPREUzWTJaaE1UQmpNRE00WlRCbU1qQXlZemxpWVRJMllqUmhZVFpsT0dJeVptVXhOV0UzWVE9PSIsImtpZCI6ImdhdGV3YXlfY2VydGlmaWNhdGVfYWxpYXMiLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhZG1pbkBjYXJib24uc3VwZXIiLCJhcHBsaWNhdGlvbiI6eyJvd25lciI6ImFkbWluIiwidGllclF1b3RhVHlwZSI6bnVsbCwidGllciI6IjEwUGVyTWluIiwibmFtZSI6IkhlbGxvIFdvcmxkIiwiaWQiOjIsInV1aWQiOiI2OTE0ZjdiNy1mYjc1LTRkOWQtYjczNC0xODVmMjJjZTMxMzMifSwiaXNzIjoiaHR0cHM6XC9cL2xvY2FsaG9zdDo5NDQzXC9vYXV0aDJcL3Rva2VuIiwidGllckluZm8iOnsiQnJvbnplIjp7InRpZXJRdW90YVR5cGUiOiJyZXF1ZXN0Q291bnQiLCJncmFwaFFMTWF4Q29tcGxleGl0eSI6MCwiZ3JhcGhRTE1heERlcHRoIjowLCJzdG9wT25RdW90YVJlYWNoIjp0cnVlLCJzcGlrZUFycmVzdExpbWl0IjowLCJzcGlrZUFycmVzdFVuaXQiOm51bGx9fSwia2V5dHlwZSI6IlBST0RVQ1RJT04iLCJwZXJtaXR0ZWRSZWZlcmVyIjoiIiwic3Vic2NyaWJlZEFQSXMiOlt7InN1YnNjcmliZXJUZW5hbnREb21haW4iOiJjYXJib24uc3VwZXIiLCJuYW1lIjoiUHJvbWV0ZXVzQWNjb3VudGluZ0FQSSIsImNvbnRleHQiOiJcL3Byb21ldGV1c2FjY291bnRpbmdhcGlcLzEuMC4wIiwicHVibGlzaGVyIjoiYWRtaW4iLCJ2ZXJzaW9uIjoiMS4wLjAiLCJzdWJzY3JpcHRpb25UaWVyIjoiQnJvbnplIn1dLCJ0b2tlbl90eXBlIjoiYXBpS2V5IiwicGVybWl0dGVkSVAiOiIiLCJpYXQiOjE2OTMwNTYyMjQsImp0aSI6IjJmNzVhZWMyLTZlYzItNGQ5ZS1hOWM2LTY1NTk4MjFmY2EyNSJ9.kUP5xZUzZak6Ywu5NfikkzWt8w8dBCadZclCy5qjJOJfd89gcTnOTrUa8VVIQsIiPi0rZNu9DQqbC_S0Dfvz75hrHdFVGcdMiB5CfsA2XU6kit9BJPmhjblD9B_cHj7ccrtDTSps9R--0zBT2tyj0xjQ-zT4hSQmZNzQ4kt0L3rOp19xHTvc2Vq6FjQtcdmnUTPFrDi7YouElBa4UacwI1Eg0lb4EVgYFn_JC4KTFp0yGWze9ztTfqykfKtI-iD6ebjII7pekGKg5dyXo6s7yIOiCF5aV-z_ji_g1FaKQkxJ33uTIrCH7J6atm8FA8eootVBDOyXdQsEDHLlFJ6lNw==",
+								"type": "text"
+							},
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL3YxL2F1dGgvbG9naW4iLCJpYXQiOjE2OTMwNTYzODAsImV4cCI6MTY5MzA1OTk4MCwibmJmIjoxNjkzMDU2MzgwLCJqdGkiOiJCUGdjTU90djB2UnlBcmF1Iiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.XGYu-_v5GCxgUqQodEr9ebZzMKhNxzlHjoQnb6lhq-M",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "per_page",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "code",
+									"value": "PO_002",
+									"disabled": true
+								},
+								{
+									"key": "first_name",
+									"value": "John",
+									"disabled": true
+								},
+								{
+									"key": "last_name",
+									"value": "Doe",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get all",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"admin@gmail.com\",\n    \"password\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "per_page",
+											"value": "2",
+											"disabled": true
+										},
+										{
+											"key": "code",
+											"value": "PO_002",
+											"disabled": true
+										},
+										{
+											"key": "first_name",
+											"value": "John",
+											"disabled": true
+										},
+										{
+											"key": "last_name",
+											"value": "Doe",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 25 Aug 2023 13:47:45 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 25 Aug 2023 13:47:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.1"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "55"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"current_page\": 1,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"email\": \"admin@gmail.com\",\n            \"first_name\": \"Admin\",\n            \"last_name\": \"User\",\n            \"email_verified_at\": null,\n            \"created_at\": \"2023-08-25T06:25:42.000000Z\",\n            \"updated_at\": \"2023-08-25T06:25:42.000000Z\",\n            \"roles\": [\n                \"admin\"\n            ]\n        },\n        {\n            \"id\": 2,\n            \"email\": \"user@gmail.com\",\n            \"first_name\": \"User\",\n            \"last_name\": \"User\",\n            \"email_verified_at\": null,\n            \"created_at\": \"2023-08-25T06:25:43.000000Z\",\n            \"updated_at\": \"2023-08-25T06:25:43.000000Z\",\n            \"roles\": [\n                \"user\"\n            ]\n        },\n        {\n            \"id\": 3,\n            \"email\": \"superadmin@gmail.com\",\n            \"first_name\": \"Super\",\n            \"last_name\": \"Admin\",\n            \"email_verified_at\": null,\n            \"created_at\": \"2023-08-25T06:25:43.000000Z\",\n            \"updated_at\": \"2023-08-25T06:25:43.000000Z\",\n            \"roles\": [\n                \"super_admin\"\n            ]\n        },\n        {\n            \"id\": 4,\n            \"email\": \"john.doe@example.com\",\n            \"first_name\": \"John\",\n            \"last_name\": \"Doe\",\n            \"email_verified_at\": null,\n            \"created_at\": \"2023-08-25T06:30:08.000000Z\",\n            \"updated_at\": \"2023-08-25T06:30:08.000000Z\",\n            \"roles\": [\n                \"admin\"\n            ]\n        }\n    ],\n    \"first_page_url\": \"http://localhost:8000/api/v1/users?page=1\",\n    \"from\": 1,\n    \"last_page\": 1,\n    \"last_page_url\": \"http://localhost:8000/api/v1/users?page=1\",\n    \"links\": [\n        {\n            \"url\": null,\n            \"label\": \"&laquo; Previous\",\n            \"active\": false\n        },\n        {\n            \"url\": \"http://localhost:8000/api/v1/users?page=1\",\n            \"label\": \"1\",\n            \"active\": true\n        },\n        {\n            \"url\": null,\n            \"label\": \"Next &raquo;\",\n            \"active\": false\n        }\n    ],\n    \"next_page_url\": null,\n    \"path\": \"http://localhost:8000/api/v1/users\",\n    \"per_page\": 20,\n    \"prev_page_url\": null,\n    \"to\": 4,\n    \"total\": 4\n}"
+						}
+					]
+				},
+				{
+					"name": "Get one by Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body has 'id' property\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('id');",
+									"});",
+									"",
+									"pm.test(\"Response body has 'name' property\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('name');",
+									"});",
+									"",
+									"pm.test(\"Response body has 'description' property\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('description');",
+									"});",
+									"",
+									"pm.test(\"Response body has 'created_at' property\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('created_at');",
+									"});",
+									"",
+									"pm.test(\"Response body has 'updated_at' property\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('updated_at');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/users/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "User not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"admin@gmail.com\",\n    \"password\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users/12",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										"12"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 25 Aug 2023 13:48:11 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 25 Aug 2023 13:48:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.1"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "57"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User not found\",\n    \"status\": \"error\",\n    \"code\": 404,\n    \"data\": null\n}"
+						},
+						{
+							"name": "Get user success by Id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"admin@gmail.com\",\n    \"password\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users/1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 25 Aug 2023 13:48:36 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 25 Aug 2023 13:48:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.1"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "55"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Request processed successfully\",\n    \"status\": \"success\",\n    \"code\": 200,\n    \"data\": {\n        \"id\": 1,\n        \"email\": \"admin@gmail.com\",\n        \"first_name\": \"Admin\",\n        \"last_name\": \"User\",\n        \"email_verified_at\": null,\n        \"created_at\": \"2023-08-25T06:25:42.000000Z\",\n        \"updated_at\": \"2023-08-25T06:25:42.000000Z\",\n        \"roles\": [\n            \"admin\"\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete by Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body has 'id' property\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('id');",
+									"});",
+									"",
+									"pm.test(\"Response body has 'name' property\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('name');",
+									"});",
+									"",
+									"pm.test(\"Response body has 'description' property\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('description');",
+									"});",
+									"",
+									"pm.test(\"Response body has 'created_at' property\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('created_at');",
+									"});",
+									"",
+									"pm.test(\"Response body has 'updated_at' property\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('updated_at');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/users/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete by Id",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/users/12",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										"12"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 25 Aug 2023 13:55:49 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 25 Aug 2023 13:55:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.1"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User not found\",\n    \"status\": \"error\",\n    \"code\": 404,\n    \"data\": null\n}"
+						},
+						{
+							"name": "Delete by Id",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/users/3",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 25 Aug 2023 13:56:03 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 25 Aug 2023 13:56:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.1"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Request processed successfully\",\n    \"status\": \"success\",\n    \"code\": 200,\n    \"data\": {\n        \"message\": \"User deleted successfully\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Create new",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"email\": \"john.doed1@example.com\",\n  \"password\": \"secret\",\n  \"roles\": [\n    \"admin\",\n    \"user\"\n  ]\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "User created successfully",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"email\": \"john.doed@example.com\",\n  \"password\": \"secret\",\n  \"roles\": [\n    \"admin\",\n    \"user\"\n  ]\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 25 Aug 2023 13:56:18 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 25 Aug 2023 13:56:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.1"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Request processed successfully\",\n    \"status\": \"success\",\n    \"code\": 200,\n    \"data\": {\n        \"message\": \"User created successfully\"\n    }\n}"
+						},
+						{
+							"name": "Unprocessable Entity",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"email\": \"john.doed@example.com\",\n  \"password\": \"secret\",\n  \"roles\": [\n    \"admin\",\n    \"user\"\n  ]\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Unprocessable Content",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 25 Aug 2023 13:56:30 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 25 Aug 2023 13:56:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.1"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "57"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Unprocessable Entity\",\n    \"status\": \"error\",\n    \"code\": 422,\n    \"data\": {\n        \"email\": [\n            \"The email has already been taken.\"\n        ]\n    }\n}"
+						},
+						{
+							"name": "Role users does not exist",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"email\": \"john.doed1@example.com\",\n  \"password\": \"secret\",\n  \"roles\": [\n    \"admin\",\n    \"users\"\n  ]\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 25 Aug 2023 13:56:56 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 25 Aug 2023 13:56:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.1"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "56"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Role users does not exist\",\n    \"status\": \"error\",\n    \"code\": 400,\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\": \"John\",\n    \"last_name\": \"Doe\",\n    \"email\": \"john.doe1d@example.com\",\n    \"password\": \"secret\",\n    \"roles\": [\n        \"admin\",\n        \"user\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/12",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"12"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Unprocessable Entity",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"first_name\": \"John\",\n    \"last_name\": \"Doe\",\n    \"email\": \"john.doe1d@example.com\",\n    \"password\": \"secret\",\n    \"roles\": [\n        \"admin\",\n        \"user\"\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users/12",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										"12"
+									]
+								}
+							},
+							"status": "Unprocessable Content",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 25 Aug 2023 13:57:41 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 25 Aug 2023 13:57:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.1"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "57"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Unprocessable Entity\",\n    \"status\": \"error\",\n    \"code\": 422,\n    \"data\": {\n        \"email\": [\n            \"The email has already been taken.\"\n        ]\n    }\n}"
+						},
+						{
+							"name": "User not found",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"first_name\": \"John\",\n    \"last_name\": \"Doe\",\n    \"email\": \"john.doe1d@example.com\",\n    \"password\": \"secret\",\n    \"roles\": [\n        \"admin\",\n        \"user\"\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users/12",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										"12"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 25 Aug 2023 13:58:10 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 25 Aug 2023 13:58:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.1"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "56"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User not found\",\n    \"status\": \"error\",\n    \"code\": 404,\n    \"data\": null\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8000/api/v1"
+		},
+		{
+			"key": "token",
+			"value": ""
+		},
+		{
+			"key": "refresh_token",
+			"value": ""
+		}
+	]
+}
