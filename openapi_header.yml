@@ -1,0 +1,33 @@
+openapi: 3.0.0
+info:
+  title: Prometeus Accounting API
+  description: |
+    Prometeus Accounting API is a powerful tool for integrating accounting capabilities into applications, software, or systems. It automates tasks like invoicing, expense tracking, and financial reporting. The API is highly customizable to fit specific business needs, with robust security measures ensuring data privacy and compliance. Comprehensive documentation and developer support make integration seamless and accessible.
+  version: 1.0.0-beta
+  x-logo:
+    url: >-
+      https://gitlab.com/prometeus-kc/public/-/raw/e4dd49027fb9cfa59ad1c47585c9ce530943db65/logo.png
+    backgroundColor: "#FFFFFF"
+    altText: Prometeus KC Logo
+  termsOfService: https://www.prometeus-kc.com
+  contact:
+    name: Thorn Chorn
+    url: https://www.prometeus-kc.com
+    email: thorn.chorn@prometeus-kc.com
+  license:
+    name: MIT
+    url: https://es.wikipedia.org/wiki/Licencia_MIT
+servers:
+  - url: http://localhost:8000/api/v1
+    description: Local environment server
+  - url: http://accounting-api.dev.prometeus-kc.com/api/v1
+    description: Sandbox environment server
+  - url: https://accounting-api.prometeus-kc.com/api/v1
+    description: Production environment server
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+security:
+  - bearerAuth: []
